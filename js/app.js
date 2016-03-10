@@ -1,4 +1,4 @@
-// Enemies our player must avoid -- Enemy Constructor
+// Murari Lamsal Enemies our player must avoid -- Enemy Constructor
 
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -25,9 +25,10 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+ if (this.x < 500) {
     this.x += this.speed * dt;
-    if(this.x > 505) {
-        this.x = 1;
+   } else {
+        this.x = -180;
     }
 };
 
@@ -42,12 +43,14 @@ var Player = function (x,y){
   //  this.speed = 100;
     this.x = x;
     this.y = y;
-    this.sprite = 'images/char-boy.png';
+    this.width  = 50;
+    this.width  = 75;
+    this.sprite = 'images/char-cat-girl.png';
 };
 
 Player.prototype.update = function (dt){
     if (this.y <=0){
-        this.reset(202,515);
+        this.reset(200,410);
     }
 };
 
@@ -62,17 +65,17 @@ Player.prototype.render =function(){
 
 Player.prototype.handleInput =function(dic){
 
-    if (dic === 'left' && this.x<0) {
-        this.x += 200;
+    if (dic === 'left' && this.x > 0) {
+        this.x -= 100;
     }
-    if (dic === 'right' && this.x<500) {
-        this.x -= 200;
-    }
-    if (dic === 'up' && this.y<0) {
+    if (dic === 'right' && this.x < 400) {
         this.x += 100;
     }
-    if (dic === 'down' && this.y<500) {
-        this.x += 100;
+    if (dic === 'up' && this.y > 0) {
+        this.y -= 75;
+    }
+    if (dic === 'down' && this.y < 400) {
+        this.y += 100;
     }
 
 };
@@ -81,13 +84,13 @@ Player.prototype.handleInput =function(dic){
 // Place all enemy objects in an array called allEnemies
 
     var E1 = new Enemy(100, 50, 170);
-    var E2 = new Enemy(150, 145, 265);
+    var E2 = new Enemy(150, 150, 265);
     var E3 = new Enemy(200, 219, 225);
 
 var allEnemies = [E1, E2, E3];
 
 // Place the player object in a variable called player
- var player = new Player(200,380);
+ var player = new Player(200,408);
 
 // Rest Player
 
@@ -97,6 +100,7 @@ Player.prototype.reset = function (x,y){
 }
 
 // Checks collisions using Axis-Aligned 2D Collision Detection
+
 function checkCollisions(allEnemies, player) {
     for (var i = 0; i < allEnemies.length; i++) {
         if (allEnemies[i].x < player.x + player.width &&
