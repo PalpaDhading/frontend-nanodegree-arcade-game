@@ -44,7 +44,7 @@ var Player = function (x,y){
     this.x = x;
     this.y = y;
     this.width  = 50;
-    this.width  = 75;
+    this.height  = 75;
     this.sprite = 'images/char-cat-girl.png';
 };
 
