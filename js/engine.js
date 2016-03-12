@@ -139,6 +139,13 @@ var Engine = (function(global) {
         renderEntities();
     }
 
+    function countNumberofWatertouch(counthit){
+        var countNumber = counthit ;
+        if (player.y <1){
+            countNumber += countNumber + 1;
+        }
+        return countNumber;
+    }
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js

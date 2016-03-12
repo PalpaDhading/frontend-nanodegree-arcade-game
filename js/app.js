@@ -59,8 +59,16 @@ Player.prototype.render =function(){
    // this.x = 200;
   //  this.y = 350;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
+    ctx.font = "20pt Impact";
+    ctx.textAlign = "center";
+    ctx.strokeText("Number by Player Hit: ", 200, 85);
+    var counter =0;
+    if (player.y > 1 ) {
+        counter = counter + 1;
+        }
+    ctx.strokeText("Number by Player Hit    :   ", 200, counter);
 };
+
 // a handleInput() method.
 
 Player.prototype.handleInput =function(dic){
@@ -72,7 +80,7 @@ Player.prototype.handleInput =function(dic){
         this.x += 100;
     }
     if (dic === 'up' && this.y > 0) {
-        this.y -= 75;
+        this.y -= 30;
     }
     if (dic === 'down' && this.y < 400) {
         this.y += 100;
@@ -83,9 +91,10 @@ Player.prototype.handleInput =function(dic){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-    var E1 = new Enemy(100, 50, 170);
-    var E2 = new Enemy(150, 150, 265);
-    var E3 = new Enemy(200, 219, 225);
+    var E1 = new Enemy(100, 50, 100);
+    var E2 = new Enemy(150, 135, 150);
+    var E3 = new Enemy(200, 219, 200);
+
 
 var allEnemies = [E1, E2, E3];
 
@@ -111,6 +120,8 @@ function checkCollisions(allEnemies, player) {
         }
     }
 };
+
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
