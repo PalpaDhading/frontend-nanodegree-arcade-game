@@ -1,4 +1,5 @@
-// Murari Lamsal Enemies our player must avoid -- Enemy Constructor
+// Code writer Murari Lamsal, function  Enemies our player must avoid -- Enemy Constructor
+var picureNumber = Math.random() * 10 + 75;
 
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -13,11 +14,16 @@ var Enemy = function(x,y,speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 
-   // this.speed = Math.floor(Math.random() * (200)) + 100;
-    this.sprite = 'images/enemy-bug.png';
-   // return this ;
 
+   if (picureNumber >78){
+    this.sprite = 'images/enemy-bug.png';
+    }
+    else {
+    this.sprite = 'images/Upa.png';
+   // return this ;
+    }
 };
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -36,6 +42,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
 
 // Now write your own player class
 
@@ -66,7 +73,7 @@ Player.prototype.render =function(){
     if (player.y > 1 ) {
         counter = counter + 1;
         }
-    ctx.strokeText("Number by Player Hit    :   ", 200, counter);
+    //ctx.strokeText("Number by Player Hit    :   ", 200,85, counter);
 };
 
 // a handleInput() method.
@@ -91,10 +98,16 @@ Player.prototype.handleInput =function(dic){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
-    var E1 = new Enemy(100, 50, 100);
-    var E2 = new Enemy(150, 135, 150);
-    var E3 = new Enemy(200, 219, 200);
-
+if (picureNumber <78){
+    var E1 = new Enemy(100, 140, 100);
+    var E2 = new Enemy(150, 225, 150);
+    var E3 = new Enemy(200, 310, 200);
+    }
+    else {
+    var E1 = new Enemy(100, 60, 100);
+    var E2 = new Enemy(150, 145, 150);
+    var E3 = new Enemy(200, 222, 200);
+  };
 
 var allEnemies = [E1, E2, E3];
 
@@ -106,7 +119,7 @@ var allEnemies = [E1, E2, E3];
 Player.prototype.reset = function (x,y){
     this.x = x;
     this.y = y;
-}
+};
 
 // Checks collisions using Axis-Aligned 2D Collision Detection
 
@@ -119,7 +132,7 @@ function checkCollisions(allEnemies, player) {
             player.reset(202, 415);
         }
     }
-};
+}
 
 
 

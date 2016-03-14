@@ -132,7 +132,8 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+               // ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+               ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
 
@@ -160,6 +161,16 @@ var Engine = (function(global) {
 
         player.render();
     }
+    function renderEntities() {
+        /* Loop through all of the objects within the allEnemies array and call
+         * the render function you have defined.
+         */
+        allEnemies.forEach(function(enemyFace) {
+            enemyFace.render();
+        });
+
+        player.render();
+    }
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
@@ -179,7 +190,10 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-cat-girl.png'
+        'images/char-cat-girl.png',
+        'images/Gem Blue.png',
+        'images/Upa.png'
+
     ]);
     Resources.onReady(init);
 
