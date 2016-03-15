@@ -1,5 +1,9 @@
 // Code writer Murari Lamsal, function  Enemies our player must avoid -- Enemy Constructor
+// Global variables
+
 var picureNumber = Math.random() * 10 + 75;
+var counter = 0;
+
 
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
@@ -31,11 +35,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
- if (this.x < 500) {
+    if (this.x < 500) {
     this.x += this.speed * dt;
-   } else {
+        } else {
         this.x = -180;
-    }
+        }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -59,21 +63,16 @@ Player.prototype.update = function (dt){
     if (this.y <=0){
         this.reset(200,410);
     }
+
 };
 
 // This class requires an update(), render() and
-Player.prototype.render =function(){
-   // this.x = 200;
-  //  this.y = 350;
+Player.prototype.render = function(){
+
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     ctx.font = "20pt Impact";
     ctx.textAlign = "center";
-    ctx.strokeText("Number by Player Hit: ", 200, 85);
-    var counter =0;
-    if (player.y > 1 ) {
-        counter = counter + 1;
-        }
-    //ctx.strokeText("Number by Player Hit    :   ", 200,85, counter);
+    ctx.strokeText("Number by Player Hit: " + counter, 200, 85);
 };
 
 // a handleInput() method.
@@ -119,22 +118,11 @@ var allEnemies = [E1, E2, E3];
 Player.prototype.reset = function (x,y){
     this.x = x;
     this.y = y;
+    if(this.y <= 0){
+    center += 1;
+    this.reset(200,410);
+   }
 };
-
-// Checks collisions using Axis-Aligned 2D Collision Detection
-
-function checkCollisions(allEnemies, player) {
-    for (var i = 0; i < allEnemies.length; i++) {
-        if (allEnemies[i].x < player.x + player.width &&
-            allEnemies[i].x + allEnemies[i].width > player.x &&
-            allEnemies[i].y < player.y + player.height &&
-            allEnemies[i].height + allEnemies[i].y > player.y) {
-            player.reset(202, 415);
-        }
-    }
-}
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

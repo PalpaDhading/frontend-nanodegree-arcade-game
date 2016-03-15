@@ -171,6 +171,19 @@ var Engine = (function(global) {
 
         player.render();
     }
+//Function to checkCollision
+// Checks collisions using Axis-Aligned 2D Collision Detection
+
+    function checkCollisions(allEnemies, player) {
+    for (var i = 0; i < allEnemies.length; i++) {
+        if (allEnemies[i].x < player.x + player.width &&
+            allEnemies[i].x + allEnemies[i].width > player.x &&
+            allEnemies[i].y < player.y + player.height &&
+            allEnemies[i].height + allEnemies[i].y > player.y) {
+            player.reset(202, 415);
+           }
+        }
+    }
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
